@@ -15,7 +15,7 @@ async function app(view){
     const citys = []
     while (true){
         
-        //console.clear()
+        console.clear()
         if (table.length === 0){
             console.log(chalk.magenta(
                 figlet.textSync(
@@ -29,7 +29,15 @@ async function app(view){
             printTable(fake_table)  
         }
         else{
-        console.log(title)
+        console.log(chalk.magenta(
+            figlet.textSync(
+                'Weather App',
+                {
+                    horizontalLayout: 'full',
+                    font: 'Nancyj-Underlined'
+                }
+            )
+        ))
         printTable(table)
         }
 
