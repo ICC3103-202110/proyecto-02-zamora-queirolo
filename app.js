@@ -1,5 +1,6 @@
 const {input1, input2, input3, input4} = require('./view')
 const {printTable} = require('console-table-printer')
+const {randomTemperature, randomMaxTemperature, randomMinTemperature} = require('./update')
 const figlet = require('figlet')
 const chalk = require('chalk')
 
@@ -47,9 +48,11 @@ async function app(view){
             console.log('test Add City')
             const {city} = await input2()
             console.log('test: ', city)
-            const newMax = Math.floor(Math.random() * 50)
-            const newMin = Math.floor(Math.random() * newMax)
-            const newTemp = Math.floor(Math.random() * newMax)+newMin
+            const {
+                max: newMax,
+                min: newMin,
+                temperature: newTemp
+            } = randomTemperature()
             table.push({Name: city, Temp: newTemp, Max: newMax, Min: newMin})
             citys.push(city)
             }
@@ -59,9 +62,11 @@ async function app(view){
             let pos = citys.indexOf(c_city)
             citys.splice(pos, 1)
             table.splice(pos, 1)
-            const newMax = Math.floor(Math.random() * 50)
-            const newMin = Math.floor(Math.random() * newMax)
-            const newTemp = Math.floor(Math.random() * newMax)+newMin
+            const {
+                max: newMax,
+                min: newMin,
+                temperature: newTemp
+            } = randomTemperature()
             table.push({Name: c_city, Temp: newTemp, Max: newMax, Min: newMin})
             citys.push(c_city)
             }
