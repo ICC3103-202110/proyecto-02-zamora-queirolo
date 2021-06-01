@@ -1,16 +1,27 @@
 const {input1, input2, input3, input4} = require('./view')
 const {printTable} = require('console-table-printer')
-const { Table } = require('console-table-printer');
+
 
 async function app(state, update, view){
     const {model, currentView} = state
-    const {title, table} = currentView
-    const table1 = new Table(['Name', 'Temp', 'Max', 'Min'])
+    const {title} = currentView
+    const table = []
+    const fake_table = [{Name: '',
+                        Temp: '',
+                        Max: '',
+                        Min: ''}]
+    const citys = []
     while (true){
         
         //console.clear()
+        if (table.length === 0){
+            console.log(title)
+            printTable(fake_table)  
+        }
+        else{
         console.log(title)
-        table1.printTable()
+        printTable(table)
+        }
 
         // FORM (Ask user input)
         const {choise} = await input1()
@@ -20,8 +31,9 @@ async function app(state, update, view){
             console.log('test: ', city)
             const newMax = Math.floor(Math.random() * 50)
             const newMin = Math.floor(Math.random() * newMax)
-            const newTemp = Math.floor(Math.random() * newMax-1)+newMin
-            table1.addRow({ Name: city, Temp: newTemp , Max:newMax  , Min: newMin }, { color: 'magenta' });
+            const newTemp = Math.floor(Math.random() * newMax)+newMin
+            table.push({Name: city, Temp: newTemp, Max: newMax, Min: newMin})
+            citys.push(city)
             }
         if(choise === 'Update City'){
             console.log('test Update City')
@@ -30,12 +42,14 @@ async function app(state, update, view){
             }
         if(choise === 'Delete City'){
             console.log('test Delete City')
-            //const {c_city} = await input3()
-            console.log(table1)
-            console.log('test ',table1[1])
+            const {c_city} = await input3(citys)
+            let pos = citys.indexOf(c_city)
+            citys.splice(pos, 1)
+            table.splice(pos, 1)
             }
          
         }
+        
     }
 
 

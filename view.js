@@ -68,14 +68,13 @@ function input2(model){
     ])
 }
 
-function input3 (){
+function input3 (citys){
     const message = 'Select Location: '
-    const choices = ['Add City', 'Update City', 'Delete City']
+    const choices = citys
     return inquirer.prompt({
         name: 'c_city',
         type: 'list',
         message: message,
-        default: name,
         choices: choices
     })
 }
