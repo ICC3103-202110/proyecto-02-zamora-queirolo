@@ -14,19 +14,7 @@ function getTitle(){
     )
 }
 
-function getTable(model){
-    const {name} = model
-    const {temp} = model
-    const {max} = model
-    const {min} = model
-    return [
-        {'Name': name,
-            'Temp': temp,
-            'Max': max,
-            'Min': min
-        }
-    ]
-}
+
 
 
 
@@ -34,7 +22,6 @@ function getTable(model){
 function view(model){
     return {
         title: getTitle(),
-        table: getTable(model)
     }
 }
 
@@ -50,7 +37,7 @@ function input1 (){
     })
 }
 
-function input2(model){
+function input2(){
     const message = 'Add City'
     return inquirer.prompt([
         {

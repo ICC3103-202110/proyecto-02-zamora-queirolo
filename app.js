@@ -1,10 +1,12 @@
 const {input1, input2, input3, input4} = require('./view')
 const {printTable} = require('console-table-printer')
+const figlet = require('figlet')
+const chalk = require('chalk')
 
 
-async function app(state, update, view){
-    const {model, currentView} = state
-    const {title} = currentView
+async function app(view){
+
+    const {title} = view
     const table = []
     const fake_table = [{Name: '',
                         Temp: '',
@@ -15,7 +17,15 @@ async function app(state, update, view){
         
         //console.clear()
         if (table.length === 0){
-            console.log(title)
+            console.log(chalk.magenta(
+                figlet.textSync(
+                    'Weather App',
+                    {
+                        horizontalLayout: 'full',
+                        font: 'Nancyj-Underlined'
+                    }
+                )
+            ))
             printTable(fake_table)  
         }
         else{
@@ -37,8 +47,15 @@ async function app(state, update, view){
             }
         if(choise === 'Update City'){
             console.log('test Update City')
-            const {c_city} = await input3()
-             
+            const {c_city} = await input3(citys)
+            let pos = citys.indexOf(c_city)
+            citys.splice(pos, 1)
+            table.splice(pos, 1)
+            const newMax = Math.floor(Math.random() * 50)
+            const newMin = Math.floor(Math.random() * newMax)
+            const newTemp = Math.floor(Math.random() * newMax)+newMin
+            table.push({Name: c_city, Temp: newTemp, Max: newMax, Min: newMin})
+            citys.push(c_city)
             }
         if(choise === 'Delete City'){
             console.log('test Delete City')
