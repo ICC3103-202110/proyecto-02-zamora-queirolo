@@ -51,16 +51,19 @@ function input1 (){
 }
 
 function input2(model){
-    const {name} = model
     const message = 'Add City'
     return inquirer.prompt([
         {
             name: 'city',
             type: 'input',
-            message: message,
-            default: name,
-            
-            
+            message: message, 
+            validate: function(value){
+                if(value !== '' ){
+                    return true
+                } else {
+                    return 'Enter a valid city'
+                }
+            } 
         }
     ])
 }
