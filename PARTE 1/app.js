@@ -1,6 +1,6 @@
 const {input1, input2, input3, input4} = require('./view')
 const {printTable} = require('console-table-printer')
-const {UpdateTemperature} = require('./update')
+const {randomTemperature, randomMaxTemperature, randomMinTemperature} = require('./update')
 const figlet = require('figlet')
 const chalk = require('chalk')
 

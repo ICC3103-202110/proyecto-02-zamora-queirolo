@@ -17,5 +17,7 @@ console.log("temperature", randomTemperature())
 
 
 module.exports = {
-    randomTemperature
+    randomTemperature,
+    randomMaxTemperature, 
+    randomMinTemperature
 }
