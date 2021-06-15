@@ -16,7 +16,7 @@ async function app(view){
     const citys = []
     while (true){
         
-        //console.clear()
+        console.clear()
         if (table.length === 0){
             console.log(chalk.magenta(
                 figlet.textSync(
@@ -47,7 +47,7 @@ async function app(view){
         if(choise === 'Add City'){
             console.log('test Add City')
             const {city} = await input2()
-            console.log('test: ', city)
+            console.log('Loading: ', city)
             const{temp_max, temp_min, temp} = await UpdateTemperature(city) 
 
             table.push({Name: city, Temp: temp, Max: temp_max, Min: temp_min})
@@ -59,12 +59,8 @@ async function app(view){
             let pos = citys.indexOf(c_city)
             citys.splice(pos, 1)
             table.splice(pos, 1)
-            const {
-                max: newMax,
-                min: newMin,
-                temperature: newTemp
-            } = await UpdateTemperature(c_city)
-            table.push({Name: c_city, Temp: newTemp, Max: newMax, Min: newMin})
+            const{temp_max, temp_min, temp} = await UpdateTemperature(c_city)
+            table.push({Name: c_city, Temp: temp, Max: temp_max, Min: temp_min})
             citys.push(c_city)
             }
         if(choise === 'Delete City'){
