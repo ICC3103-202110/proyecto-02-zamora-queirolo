@@ -48,9 +48,9 @@ async function app(view){
             console.log('test Add City')
             const {city} = await input2()
             console.log('test: ', city)
-            const{max, min, temp} = UpdateTemperature(city) 
+            const{temp_max, temp_min, temp} = await UpdateTemperature(city) 
 
-            table.push({Name: city, Temp: temp, Max: max, Min: min})
+            table.push({Name: city, Temp: temp, Max: temp_max, Min: temp_min})
             citys.push(city)
             }
         if(choise === 'Update City'){
@@ -63,7 +63,7 @@ async function app(view){
                 max: newMax,
                 min: newMin,
                 temperature: newTemp
-            } = UpdateTemperature(c_city)
+            } = await UpdateTemperature(c_city)
             table.push({Name: c_city, Temp: newTemp, Max: newMax, Min: newMin})
             citys.push(c_city)
             }
