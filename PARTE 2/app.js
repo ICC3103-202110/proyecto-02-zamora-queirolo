@@ -1,6 +1,6 @@
-const {input1, input2, input3, input4} = require('./view')
+const {input1, input2, input3} = require('./view')
 const {printTable} = require('console-table-printer')
-const {randomTemperature, randomMaxTemperature, randomMinTemperature} = require('./update')
+const {UpdateTemperature} = require('./update')
 const figlet = require('figlet')
 const chalk = require('chalk')
 
@@ -16,7 +16,7 @@ async function app(view){
     const citys = []
     while (true){
         
-        console.clear()
+        //console.clear()
         if (table.length === 0){
             console.log(chalk.magenta(
                 figlet.textSync(
@@ -48,12 +48,9 @@ async function app(view){
             console.log('test Add City')
             const {city} = await input2()
             console.log('test: ', city)
-            const {
-                max: newMax,
-                min: newMin,
-                temperature: newTemp
-            } = randomTemperature()
-            table.push({Name: city, Temp: newTemp, Max: newMax, Min: newMin})
+            const{max, min, temp} = UpdateTemperature(city) 
+
+            table.push({Name: city, Temp: temp, Max: max, Min: min})
             citys.push(city)
             }
         if(choise === 'Update City'){
@@ -66,7 +63,7 @@ async function app(view){
                 max: newMax,
                 min: newMin,
                 temperature: newTemp
-            } = randomTemperature()
+            } = UpdateTemperature(c_city)
             table.push({Name: c_city, Temp: newTemp, Max: newMax, Min: newMin})
             citys.push(c_city)
             }
