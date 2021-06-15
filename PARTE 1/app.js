@@ -52,7 +52,7 @@ async function app(view){
                 max: newMax,
                 min: newMin,
                 temperature: newTemp
-            } = UpdateTemperature()
+            } = randomTemperature()
             table.push({Name: city, Temp: newTemp, Max: newMax, Min: newMin})
             citys.push(city)
             }
