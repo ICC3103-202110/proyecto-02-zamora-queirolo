@@ -7,7 +7,7 @@ function randomMinTemperature(min, max) {
 }
 
 function randomTemperature(){
-    const max = randomMaxTemperature(-10,45)
+    const max = randomMaxTemperature(0,45)
     const min = randomMinTemperature(0,max)
     const temperature = Math.round(Math.random() * (max- min) + min)
     return {max, min, temperature}
